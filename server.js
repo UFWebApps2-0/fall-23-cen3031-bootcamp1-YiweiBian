@@ -12,31 +12,19 @@ var requestHandler = function (request, response) {
     */
     //console.log(request);
     if (request.url === '/listings' && request.method === 'GET') {
+        //check if method is get and whether it is sent to '/listing' path
         response.writeHead(200, { 'Content-Type': 'application/json' });
+        //sending 200 status and using the correct MIME type to retrieve data
         response.end(listingData);
+        //list the listingData
     }
     else {
         response.writeHead(404, { 'Content-Type': 'text/plain' });
+        //if not then send 404 status to server
         response.end('404 not found')
+        //list the status on screen
     }
-    /*
-      Your request handler should send listingData in the JSON format as a response if a GET request 
-      is sent to the '/listings' path. Otherwise, it should send a 404 error. 
-  
-      HINT: Explore the request object and its properties 
-      HINT: Explore the response object and its properties
-      https://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177
-      
-      HINT: Explore how callback's work 
-      http://www.theprojectspot.com/tutorial-post/nodejs-for-beginners-callbacks/4
-      
-      HINT: Explore the list of MIME Types
-      https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
-     
-      HINT: Explore mdn web docs for resources on how to use javascript.
-      Helpful example: if-else structure- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else
-  
-      */
+    
 };
 
 fs.readFile('listings.json', 'utf8', function (err, data) {
